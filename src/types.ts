@@ -1,5 +1,6 @@
 /**
  * Types of threats.
+ *
  * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatType
  */
 export type ThreatType =
@@ -11,7 +12,8 @@ export type ThreatType =
 
 /**
  * Types of platforms.
- * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/PlatformType
+ *
+ * @see [PlatformType]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/PlatformType}
  */
 export type PlatformType =
   | 'PLATFORM_TYPE_UNSPECIFIED'
@@ -26,7 +28,8 @@ export type PlatformType =
 
 /**
  * Types of entries that pose threats. Threat lists are collections of entries of a single type.
- * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatEntryType
+ *
+ * @see [ThreatEntryType]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatEntryType}
  */
 export type ThreatEntryType =
   | 'THREAT_ENTRY_TYPE_UNSPECIFIED'
@@ -35,7 +38,8 @@ export type ThreatEntryType =
 
 /**
  * An individual threat; for example, a malicious URL or its hash representation. Only one of these fields should be set.
- * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatEntry
+ *
+ * @see [ThreatEntry]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatEntry}
  */
 export type ThreatEntry =
   | {
@@ -61,7 +65,8 @@ export type ThreatEntry =
 
 /**
  * The client metadata associated with Safe Browsing API requests.
- * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ClientInfo
+ *
+ * @see [ClientInfo]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ClientInfo}
  */
 export type ClientInfo = {
   /**
@@ -76,7 +81,8 @@ export type ClientInfo = {
 
 /**
  * The information regarding one or more threats that a client submits when checking for matches in threat lists.
- * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatInfo
+ *
+ * @see [ThreatInfo]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatInfo}
  */
 export type ThreatInfo = {
   /**
@@ -99,7 +105,8 @@ export type ThreatInfo = {
 
 /**
  * A single metadata entry.
- * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch#metadataentry
+ *
+ * @see [MetadataEntry]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch#metadataentry}
  */
 export type MetadataEntry = {
   /**
@@ -115,7 +122,8 @@ export type MetadataEntry = {
 /**
  * The metadata associated with a specific threat entry. The client is expected
  * to know the metadata key/value pairs associated with each threat type.
- * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch#threatentrymetadata
+ *
+ * @see [ThreatEntryMetadata]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch#threatentrymetadata}
  */
 export type ThreatEntryMetadata = {
   /**
@@ -126,7 +134,8 @@ export type ThreatEntryMetadata = {
 
 /**
  * A match when checking a threat entry in the Safe Browsing threat lists.
- * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch
+ *
+ * @see [ThreatMatch]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch}
  */
 export type ThreatMatch = {
   /**
