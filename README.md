@@ -4,11 +4,38 @@ A JavaScript client for [Google Safe Browsing](https://safebrowsing.google.com) 
 
 ## Features
 
-- [Zero dependency](https://jsr.io/@hckhanh/google-safe-browsing/dependencies)
+- [Zero dependencies](https://jsr.io/@hckhanh/google-safe-browsing/dependencies)
 - Built-in support for Edge runtime
 - Typesafe with TypeScript
 - Supports all Google Safe Browsing API v4 endpoints
 - Fully documented
+
+## APIs
+
+### findThreadMatches
+
+Finds the threat entries that match the Safe Browsing lists.
+
+```ts
+import { findThreadMatches } from '@hckhanh/google-safe-browsing'
+
+const result = await findThreadMatches('apiKey', {
+  client: {
+    clientId: 'uniqueClientId',
+    clientVersion: '1.0.0',
+  },
+  threatInfo: {
+    threatTypes: ['MALWARE', 'SOCIAL_ENGINEERING'],
+    platformTypes: ['ALL_PLATFORMS'],
+    threatEntryTypes: ['URL'],
+    threatEntries: [
+      { url: 'http://malware.testing.google.test/testing/malware/' },
+    ],
+  },
+})
+
+const hasRisk = result.matches !== undefined && result.matches.length > 0
+```
 
 ## Release Notes
 

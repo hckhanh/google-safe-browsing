@@ -2,33 +2,6 @@ import type { ClientInfo, ThreatInfo, ThreatMatch } from './types.ts'
 import { endpoint } from './configs.ts'
 
 /**
- * @module
- * The Lookup API lets your client applications send requests to the Safe Browsing
- * servers to check if URLs are included on any of the Safe Browsing lists.
- * If a URL is found on one or more lists, the matching information is returned.
- *
- * @example
- * ```ts
- * import { findThreadMatches } from '@hckhanh/google-safe-browsing'
- *
- * const result = await findThreadMatches('apiKey', {
- *   client: {
- *     clientId: 'uniqueClientId',
- *     clientVersion: '1.0.0',
- *   },
- *   threatInfo: {
- *     threatTypes: ['MALWARE', 'SOCIAL_ENGINEERING'],
- *     platformTypes: ['ALL_PLATFORMS'],
- *     threatEntryTypes: ['URL'],
- *     threatEntries: [
- *       { url: 'http://malware.testing.google.test/testing/malware/' },
- *     ],
- *   },
- * })
- * ```
- */
-
-/**
  * The request object containing the parameters for finding thread matches.
  */
 export type FindThreadMatchesRequest = {
@@ -54,6 +27,26 @@ export type FindThreadMatchesResponse = {
 
 /**
  * Finds threat matches using Google Safe Browsing API.
+ *
+ * @example
+ * ```ts
+ * const result = await findThreadMatches('apiKey', {
+ *   client: {
+ *     clientId: 'uniqueClientId',
+ *     clientVersion: '1.0.0',
+ *   },
+ *   threatInfo: {
+ *     threatTypes: ['MALWARE', 'SOCIAL_ENGINEERING'],
+ *     platformTypes: ['ALL_PLATFORMS'],
+ *     threatEntryTypes: ['URL'],
+ *     threatEntries: [
+ *       { url: 'http://malware.testing.google.test/testing/malware/' },
+ *     ],
+ *   },
+ * })
+ *
+ * const hasRisk = result.matches !== undefined && result.matches.length > 0
+ * ```
  *
  * @param apiKey The API key for accessing the Google Safe Browsing API. You should follow the instruction to get the API key at https://developers.google.com/safe-browsing/v4/get-started.
  * @param request The request object containing the parameters for finding thread matches.
