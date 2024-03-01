@@ -1,0 +1,81 @@
+name: Tests
+
+on:
+  workflow_call:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lints:
+    name: Lints
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Prettier check
+        run: pnpm test:prettier
+      - name: Checks for known security issues with the installed packages
+        run: pnpm audit
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: pnpm npm audit signatures
+  node:
+    name: Node
+    needs: lints
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 20, 21]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Set up Node.js ${{matrix.node}}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{matrix.node}}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run unit tests
+        run: pnpm test -- --environment=node
+  edge:
+    name: Edge Runtime
+    needs: lints
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run unit tests
+        run: pnpm test -- --environment=edge-runtime
+  deno:
+    name: Deno
+    needs: lints
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Deno
+        uses: denoland/setup-deno@v1
+      - name: Type-check the dependencies
+        run: deno check src/index.ts

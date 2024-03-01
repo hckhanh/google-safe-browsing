@@ -1,0 +1,51 @@
+{
+  "name": "@hckhanh/google-safe-browsing",
+  "version": "0.0.0-development",
+  "description": "A JavaScript client for Google Safe Browsing API (https://developers.google.com/safe-browsing)",
+  "type": "module",
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "test": "vitest related src/**/*.ts",
+    "test:prettier": "prettier --check ."
+  },
+  "author": {
+    "name": "Khánh Hoàng",
+    "email": "hi@khanh.sh",
+    "url": "https://khanh.sh"
+  },
+  "license": "MIT",
+  "keywords": [
+    "reader",
+    "read",
+    "number",
+    "vn",
+    "vietnam",
+    "vietnamese",
+    "vietnamese-language",
+    "vietnamese-currency",
+    "currency",
+    "vnd",
+    "vn-lang",
+    "lang",
+    "language",
+    "languages",
+    "language-processing",
+    "text-generation",
+    "helper",
+    "helpers",
+    "helpers-library",
+    "helper-tool",
+    "helper-methods",
+    "helper-class",
+    "helper-functions",
+    "helper-script"
+  ],
+  "devDependencies": {
+    "@edge-runtime/vm": "3.2.0",
+    "@types/node": "20.11.24",
+    "prettier": "3.2.5",
+    "typescript": "5.3.3",
+    "vitest": "1.3.1"
+  }
+}

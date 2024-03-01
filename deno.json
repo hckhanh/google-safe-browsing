@@ -1,0 +1,18 @@
+{
+  "name": "@hckhanh/google-safe-browsing",
+  "version": "0.0.0-development",
+  "exports": "./src/index.ts",
+  "exclude": [
+    ".github/",
+    "src/**/*.test.ts",
+    ".git*",
+    ".prettier*",
+    ".*ignore",
+    "*.yml",
+    "*.yaml",
+    "*.config.ts",
+    ".*rc.json",
+    "renovate.json",
+    "tsconfig.json"
+  ]
+}
