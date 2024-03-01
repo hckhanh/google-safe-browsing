@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { findThreadMatches } from './lookup.js'
+import { findThreadMatches } from './lookup.ts'
 
 const apiKey = process.env.GOOGLE_SAFE_BROWSING_API_KEY as string
 

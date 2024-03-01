@@ -1,5 +1,5 @@
 import type { ClientInfo, ThreatInfo, ThreatMatch } from './types.ts'
-import { endpoint } from './configs.js'
+import { endpoint } from './configs.ts'
 
 type FindThreadMatchesRequest = {
   client: ClientInfo
@@ -10,6 +10,9 @@ type FindThreadMatchesRequest = {
  * The threat list matches. This may be empty if the client's threat list is empty.
  */
 type FindThreadMatchesResponse = {
+  /**
+   * The threat list matches.
+   */
   matches: ThreatMatch[]
 }
 
@@ -26,8 +29,8 @@ export async function findThreadMatches(
   request: FindThreadMatchesRequest,
 ): Promise<FindThreadMatchesResponse> {
   const res = await fetch(`${endpoint}/threatMatches:find?key=${apiKey}`, {
-    headers: { 'Content-Type': 'application/json' },
     method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(request),
   })
 

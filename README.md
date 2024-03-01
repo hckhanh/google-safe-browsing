@@ -16,4 +16,4 @@ You can go to [Releases](https://github.com/hckhanh/google-safe-browsing/release
 
 > [!NOTE]
 > The Safe Browsing API is for non-commercial use only. If you need to use APIs to detect malicious URLs for commercial
-> purposes - meaning 'for sale or revenue-generating purposes' - please refer to the [Web Risk API](https://github.com/hckhanh/web-risk).
+> purposes - meaning 'for sale or revenue-generating purposes' - please refer to the [Web Risk API](https://github.com/hckhanh/google-web-risk).
