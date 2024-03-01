@@ -20,9 +20,9 @@ export type FindThreadMatchesRequest = {
  */
 export type FindThreadMatchesResponse = {
   /**
-   * The threat list matches.
+   * The threat list matches. If there is no threat, this field is omitted.
    */
-  matches: ThreatMatch[]
+  matches?: ThreatMatch[]
 }
 
 /**
