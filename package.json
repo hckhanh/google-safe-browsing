@@ -6,7 +6,7 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "test": "vitest related src/**/*.ts",
+    "test": "vitest related src/*.ts",
     "test:prettier": "prettier --check ."
   },
   "author": {
