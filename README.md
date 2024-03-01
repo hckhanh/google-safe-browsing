@@ -5,10 +5,10 @@ A JavaScript client for [Google Safe Browsing](https://safebrowsing.google.com) 
 ## Features
 
 - [Zero dependency](https://jsr.io/@hckhanh/google-safe-browsing/dependencies)
-- Edge runtime built-in support
+- Built-in support for Edge runtime
 - Typesafe with TypeScript
-- Support all Google Safe Browsing API v4 endpoints
-- Fully well-documented
+- Supports all Google Safe Browsing API v4 endpoints
+- Fully documented
 
 ## Release Notes
 
