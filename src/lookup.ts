@@ -25,6 +25,7 @@ import { endpoint } from './configs.ts'
  *     ],
  *   },
  * })
+ * ```
  */
 
 /**
