@@ -2,7 +2,7 @@
  * Types of threats.
  * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatType
  */
-type ThreatType =
+export type ThreatType =
   | 'THREAT_TYPE_UNSPECIFIED'
   | 'MALWARE'
   | 'SOCIAL_ENGINEERING'
@@ -13,7 +13,7 @@ type ThreatType =
  * Types of platforms.
  * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/PlatformType
  */
-type PlatformType =
+export type PlatformType =
   | 'PLATFORM_TYPE_UNSPECIFIED'
   | 'WINDOWS'
   | 'LINUX'
@@ -28,13 +28,16 @@ type PlatformType =
  * Types of entries that pose threats. Threat lists are collections of entries of a single type.
  * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatEntryType
  */
-type ThreatEntryType = 'THREAT_ENTRY_TYPE_UNSPECIFIED' | 'URL' | 'EXECUTABLE'
+export type ThreatEntryType =
+  | 'THREAT_ENTRY_TYPE_UNSPECIFIED'
+  | 'URL'
+  | 'EXECUTABLE'
 
 /**
  * An individual threat; for example, a malicious URL or its hash representation. Only one of these fields should be set.
  * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatEntry
  */
-type ThreatEntry =
+export type ThreatEntry =
   | {
       /**
        * A URL.
@@ -98,7 +101,7 @@ export type ThreatInfo = {
  * A single metadata entry.
  * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch#metadataentry
  */
-type MetadataEntry = {
+export type MetadataEntry = {
   /**
    * The metadata entry key. For JSON requests, the key is base64-encoded string.
    */
@@ -114,7 +117,7 @@ type MetadataEntry = {
  * to know the metadata key/value pairs associated with each threat type.
  * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch#threatentrymetadata
  */
-type ThreatEntryMetadata = {
+export type ThreatEntryMetadata = {
   /**
    * The metadata entries.
    */

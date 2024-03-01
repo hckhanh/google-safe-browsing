@@ -1,15 +1,24 @@
 import type { ClientInfo, ThreatInfo, ThreatMatch } from './types.ts'
 import { endpoint } from './configs.ts'
 
-type FindThreadMatchesRequest = {
+/**
+ * The request object containing the parameters for finding thread matches.
+ */
+export type FindThreadMatchesRequest = {
+  /**
+   * The client metadata.
+   */
   client: ClientInfo
+  /**
+   * The lists and entries to be checked for matches.
+   */
   threatInfo: ThreatInfo
 }
 
 /**
  * The threat list matches. This may be empty if the client's threat list is empty.
  */
-type FindThreadMatchesResponse = {
+export type FindThreadMatchesResponse = {
   /**
    * The threat list matches.
    */
