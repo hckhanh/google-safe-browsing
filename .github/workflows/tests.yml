@@ -50,6 +50,8 @@ jobs:
         run: pnpm install
       - name: Run unit tests
         run: pnpm test -- --environment=node
+        env:
+          GOOGLE_SAFE_BROWSING_API_KEY: ${{ secrets.GOOGLE_SAFE_BROWSING_API_KEY }}
   edge:
     name: Edge Runtime
     needs: lints
@@ -69,6 +71,8 @@ jobs:
         run: pnpm install
       - name: Run unit tests
         run: pnpm test -- --environment=edge-runtime
+        env:
+          GOOGLE_SAFE_BROWSING_API_KEY: ${{ secrets.GOOGLE_SAFE_BROWSING_API_KEY }}
   deno:
     name: Deno
     needs: lints
