@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@edge-runtime/vm':
-    specifier: 3.2.0
-    version: 3.2.0
+    specifier: 4.0.3
+    version: 4.0.3
   '@types/node':
     specifier: 20.12.2
     version: 20.12.2
@@ -19,20 +19,20 @@ devDependencies:
     version: 5.4.3
   vitest:
     specifier: 1.3.1
-    version: 1.3.1(@edge-runtime/vm@3.2.0)(@types/node@20.12.2)
+    version: 1.3.1(@edge-runtime/vm@4.0.3)(@types/node@20.12.2)
 
 packages:
 
-  /@edge-runtime/primitives@4.1.0:
-    resolution: {integrity: sha512-Vw0lbJ2lvRUqc7/soqygUX216Xb8T3WBZ987oywz6aJqRxcwSVWwr9e+Nqo2m9bxobA9mdbWNNoRY6S9eko1EQ==}
+  /@edge-runtime/primitives@5.1.0:
+    resolution: {integrity: sha512-bs379S/qL7b9B1fXM3xYe+g2orW7Uy0m8oIudiXLcHQyZLsdd0Gfw9STngFDnaAfAcRN5g+/YEMPSsDqiPm0TQ==}
     engines: {node: '>=16'}
     dev: true
 
-  /@edge-runtime/vm@3.2.0:
-    resolution: {integrity: sha512-0dEVyRLM/lG4gp1R/Ik5bfPl/1wX00xFwd5KcNH602tzBa09oF7pbTKETEhR1GjZ75K6OJnYFu8II2dyMhONMw==}
+  /@edge-runtime/vm@4.0.3:
+    resolution: {integrity: sha512-2EKlqxSbZTV4D+XG8DTX+9P1SL+m48ahvNbDuxz+dZkmUZ+ju4hl/m28j7QMbC9kU5S+4HUJCYKCAfA+3gggLw==}
     engines: {node: '>=16'}
     dependencies:
-      '@edge-runtime/primitives': 4.1.0
+      '@edge-runtime/primitives': 5.1.0
     dev: true
 
   /@esbuild/aix-ppc64@0.19.12:
@@ -864,7 +864,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@1.3.1(@edge-runtime/vm@3.2.0)(@types/node@20.12.2):
+  /vitest@1.3.1(@edge-runtime/vm@4.0.3)(@types/node@20.12.2):
     resolution: {integrity: sha512-/1QJqXs8YbCrfv/GPQ05wAZf2eakUPLPa18vkJAKE7RXOKfVHqMZZ1WlTjiwl6Gcn65M5vpNUB6EFLnEdRdEXQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -889,7 +889,7 @@ packages:
       jsdom:
         optional: true
     dependencies:
-      '@edge-runtime/vm': 3.2.0
+      '@edge-runtime/vm': 4.0.3
       '@types/node': 20.12.2
       '@vitest/expect': 1.3.1
       '@vitest/runner': 1.3.1
