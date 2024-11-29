@@ -1,19 +1,8 @@
 {
+  "$schema": "https://jsr.io/schema/config-file.v1.json",
   "name": "@hckhanh/google-safe-browsing",
   "version": "0.0.0-development",
   "exports": "./src/index.ts",
-  "exclude": [
-    ".github/",
-    "src/**/*.test.ts",
-    ".git*",
-    ".prettier*",
-    ".*ignore",
-    "*.yml",
-    "*.yaml",
-    "*.config.ts",
-    ".*rc.json",
-    "package.json",
-    "renovate.json",
-    "tsconfig.json"
-  ]
+  "include": ["src/**", "README.md", "jsr.json", "LICENSE"],
+  "exclude": ["src/**/*.test.ts"]
 }
