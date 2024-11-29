@@ -1,5 +1,7 @@
 # google-safe-browsing
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3ff8975ccae94ee293d11ac728d0ac2b)](https://app.codacy.com/gh/hckhanh/google-safe-browsing?utm_source=github.com&utm_medium=referral&utm_content=hckhanh/google-safe-browsing&utm_campaign=Badge_Grade)
+
 A JavaScript client for [Google Safe Browsing](https://safebrowsing.google.com) API (https://developers.google.com/safe-browsing)
 
 ## Features
