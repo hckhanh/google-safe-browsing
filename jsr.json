@@ -3,6 +3,8 @@
   "name": "@hckhanh/google-safe-browsing",
   "version": "0.0.0-development",
   "exports": "./src/index.ts",
-  "include": ["src/**", "README.md", "jsr.json", "LICENSE"],
-  "exclude": ["src/**/*.test.ts"]
+  "publish": {
+    "include": ["src/**", "README.md", "jsr.json", "LICENSE"],
+    "exclude": ["src/**/*.test.ts"]
+  }
 }
