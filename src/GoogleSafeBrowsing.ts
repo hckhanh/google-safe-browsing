@@ -36,7 +36,7 @@ export class GoogleSafeBrowsing {
    * @throws {Error} If the `apiKey` is an empty string or only contains whitespace.
    */
   constructor(apiKey: string, endpoint: string = DEFAULT_ENDPOINT) {
-    if (!apiKey?.trim()) {
+    if (!apiKey.trim()) {
       throw new Error('API key is required')
     }
 
@@ -95,11 +95,7 @@ export class GoogleSafeBrowsing {
       throw new Error(`API request failed with status ${res.status}`)
     }
 
-    try {
-      return await res.json()
-    } catch (error) {
-      throw new Error('Failed to parse API response')
-    }
+    return res.json()
   }
 }
 
