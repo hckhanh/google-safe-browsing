@@ -50,7 +50,7 @@ export class GoogleSafeBrowsing {
    * @example
    * ```ts
    * const client = new GoogleSafeBrowsing('apiKey')
-   * const result = await client.findThreatMatches('apiKey', {
+   * const result = await client.findThreatMatches({
    *   client: {
    *     clientId: 'uniqueClientId',
    *     clientVersion: '1.0.0',
