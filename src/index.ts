@@ -1,2 +1,2 @@
-export * from './lookup.ts'
+export * from './GoogleSafeBrowsing.ts'
 export * from './types.ts'
