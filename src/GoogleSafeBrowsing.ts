@@ -108,7 +108,7 @@ export class GoogleSafeBrowsing {
  * This type is used to encapsulate the necessary information
  * for searching and identifying threats in specified lists and entries.
  */
-export type FindThreatMatchesRequest = {
+export interface FindThreatMatchesRequest {
   /**
    * The client metadata.
    */
@@ -122,7 +122,7 @@ export type FindThreatMatchesRequest = {
 /**
  * Represents the response from a find threat matches operation.
  */
-export type FindThreatMatchesResponse = {
+export interface FindThreatMatchesResponse {
   /**
    * The threat list matches. If there is no threat, this field is omitted.
    */

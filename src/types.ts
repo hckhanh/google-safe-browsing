@@ -92,7 +92,7 @@ export type ThreatEntry =
  *
  * @see https://developers.google.com/safe-browsing/reference/rest/v4/ClientInfo
  */
-export type ClientInfo = {
+export interface ClientInfo {
   /**
    * A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
    */
@@ -108,7 +108,7 @@ export type ClientInfo = {
  *
  * @see https://developers.google.com/safe-browsing/reference/rest/v4/ThreatInfo
  */
-export type ThreatInfo = {
+export interface ThreatInfo {
   /**
    * The threat types to be checked.
    */
@@ -132,7 +132,7 @@ export type ThreatInfo = {
  *
  * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch#metadataentry
  */
-export type MetadataEntry = {
+export interface MetadataEntry {
   /**
    * The metadata entry key.
    * For JSON requests, the key is base64-encoded.
@@ -155,7 +155,7 @@ export type MetadataEntry = {
  *
  * @see https://developers.google.com/safe-browsing/reference/rest/v4/ThreatMatch#threatentrymetadata
  */
-export type ThreatEntryMetadata = {
+export interface ThreatEntryMetadata {
   /**
    * The metadata entries.
    */
@@ -167,7 +167,7 @@ export type ThreatEntryMetadata = {
  *
  * @see https://developers.google.com/safe-browsing/reference/rest/v4/ThreatMatch
  */
-export type ThreatMatch = {
+export interface ThreatMatch {
   /**
    * The threat type matching this threat.
    */
