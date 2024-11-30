@@ -8,7 +8,7 @@ const client = new GoogleSafeBrowsing(
 describe('GoogleSafeBrowsing', () => {
   it('should detect malicious link', async () => {
     expect(
-      client.findThreadMatches({
+      client.findThreatMatches({
         client: {
           clientId: 'khanh.id',
           clientVersion: '2.0.0',

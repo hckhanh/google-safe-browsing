@@ -15,7 +15,7 @@ A JavaScript client for [Google Safe Browsing](https://safebrowsing.google.com) 
 
 ## APIs
 
-### findThreadMatches
+### threatMatches.find
 
 Finds the threat entries that match the Safe Browsing lists.
 
@@ -23,7 +23,8 @@ Finds the threat entries that match the Safe Browsing lists.
 import { GoogleSafeBrowsing } from '@hckhanh/google-safe-browsing'
 
 const client = new GoogleSafeBrowsing('apiKey')
-const result = await client.findThreadMatches({
+
+const result = await client.findThreatMatches({
   client: {
     clientId: 'uniqueClientId',
     clientVersion: '1.0.0',
