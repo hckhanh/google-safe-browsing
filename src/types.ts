@@ -1,7 +1,13 @@
 /**
  * Types of threats.
  *
- * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatType
+ * * **THREAT_TYPE_UNSPECIFIED**: Unknown.
+ * * **MALWARE**: Malware threat type.
+ * * **SOCIAL_ENGINEERING**: Social engineering threat type.
+ * * **UNWANTED_SOFTWARE**: Unwanted software threat type.
+ * * **POTENTIALLY_HARMFUL_APPLICATION**: Potentially harmful application threat type.
+ *
+ * @see https://developers.google.com/safe-browsing/reference/rest/v4/ThreatType
  */
 export type ThreatType =
   | 'THREAT_TYPE_UNSPECIFIED'
@@ -13,7 +19,17 @@ export type ThreatType =
 /**
  * Types of platforms.
  *
- * @see [PlatformType]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/PlatformType}
+ * * **PLATFORM_TYPE_UNSPECIFIED**: Unknown platform.
+ * * **WINDOWS**: Threat posed to Windows.
+ * * **LINUX**: Threat posed to Linux.
+ * * **ANDROID**: Threat posed to Android.
+ * * **OSX**: Threat posed to OS X.
+ * * **IOS**: Threat posed to iOS.
+ * * **ANY_PLATFORM**: Threat posed to at least one of the defined platforms.
+ * * **ALL_PLATFORMS**: Threat posed to all defined platforms.
+ * * **CHROME**: Threat posed to Chrome.
+ *
+ * @see https://developers.google.com/safe-browsing/reference/rest/v4/PlatformType
  */
 export type PlatformType =
   | 'PLATFORM_TYPE_UNSPECIFIED'
@@ -27,9 +43,14 @@ export type PlatformType =
   | 'CHROME'
 
 /**
- * Types of entries that pose threats. Threat lists are collections of entries of a single type.
+ * Types of entries that pose threats.
+ * Threat lists are collections of all types.
  *
- * @see [ThreatEntryType]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatEntryType}
+ * * **THREAT_ENTRY_TYPE_UNSPECIFIED**:	Unspecified.
+ * * **URL**:	A URL.
+ * * **EXECUTABLE**:	An executable program.
+ *
+ * @see https://developers.google.com/safe-browsing/reference/rest/v4/ThreatEntryType
  */
 export type ThreatEntryType =
   | 'THREAT_ENTRY_TYPE_UNSPECIFIED'
@@ -39,7 +60,7 @@ export type ThreatEntryType =
 /**
  * An individual threat; for example, a malicious URL or its hash representation. Only one of these fields should be set.
  *
- * @see [ThreatEntry]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatEntry}
+ * @see https://developers.google.com/safe-browsing/reference/rest/v4/ThreatEntry
  */
 export type ThreatEntry =
   | {
@@ -57,8 +78,11 @@ export type ThreatEntry =
     }
   | {
       /**
-       * The digest of an executable in SHA256 format. The API supports both binary and hex digests.
-       * For JSON requests, digests are base64-encoded string.
+       * The digest of an executable in SHA256 format.
+       * The API supports both binary and hex digests.
+       * For JSON requests, digests are base64-encoded.
+       *
+       * A base64-encoded string.
        */
       digest: string
     }
@@ -66,9 +90,9 @@ export type ThreatEntry =
 /**
  * The client metadata associated with Safe Browsing API requests.
  *
- * @see [ClientInfo]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ClientInfo}
+ * @see https://developers.google.com/safe-browsing/reference/rest/v4/ClientInfo
  */
-export type ClientInfo = {
+export interface ClientInfo {
   /**
    * A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
    */
@@ -82,9 +106,9 @@ export type ClientInfo = {
 /**
  * The information regarding one or more threats that a client submits when checking for matches in threat lists.
  *
- * @see [ThreatInfo]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatInfo}
+ * @see https://developers.google.com/safe-browsing/reference/rest/v4/ThreatInfo
  */
-export type ThreatInfo = {
+export interface ThreatInfo {
   /**
    * The threat types to be checked.
    */
@@ -106,26 +130,32 @@ export type ThreatInfo = {
 /**
  * A single metadata entry.
  *
- * @see [MetadataEntry]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch#metadataentry}
+ * @see https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch#metadataentry
  */
-export type MetadataEntry = {
+export interface MetadataEntry {
   /**
-   * The metadata entry key. For JSON requests, the key is base64-encoded string.
+   * The metadata entry key.
+   * For JSON requests, the key is base64-encoded.
+   *
+   * A base64-encoded string.
    */
   key: string
   /**
-   * The metadata entry value. For JSON requests, the value is base64-encoded string.
+   * The metadata entry value.
+   * For JSON requests, the value is base64-encoded.
+   *
+   * A base64-encoded string.
    */
   value: string
 }
 
 /**
- * The metadata associated with a specific threat entry. The client is expected
- * to know the metadata key/value pairs associated with each threat type.
+ * The metadata associated with a specific threat entry.
+ * The client is expected to know the metadata key/value pairs associated with each threat type.
  *
- * @see [ThreatEntryMetadata]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch#threatentrymetadata}
+ * @see https://developers.google.com/safe-browsing/reference/rest/v4/ThreatMatch#threatentrymetadata
  */
-export type ThreatEntryMetadata = {
+export interface ThreatEntryMetadata {
   /**
    * The metadata entries.
    */
@@ -135,9 +165,9 @@ export type ThreatEntryMetadata = {
 /**
  * A match when checking a threat entry in the Safe Browsing threat lists.
  *
- * @see [ThreatMatch]{@link https://developers.google.com/safe-browsing/v4/reference/rest/v4/ThreatMatch}
+ * @see https://developers.google.com/safe-browsing/reference/rest/v4/ThreatMatch
  */
-export type ThreatMatch = {
+export interface ThreatMatch {
   /**
    * The threat type matching this threat.
    */
@@ -161,7 +191,8 @@ export type ThreatMatch = {
   /**
    * The cache lifetime for the returned match. Clients must not cache this response for more than this duration to avoid false positives.
    *
-   * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
+   * A duration in seconds with up to nine fractional digits, ending with '**s**'.
+   * Example: "**3.5s**".
    */
   cacheDuration: string
 }

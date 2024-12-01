@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2
       - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2
       - name: Set up Node.js ${{matrix.node}}
         uses: actions/setup-node@v4
         with:
@@ -55,7 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -74,6 +74,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Deno
-        uses: denoland/setup-deno@v1
+        uses: denoland/setup-deno@4606d5cc6fb3f673efd4f594850e3f4b3e9d29cd
       - name: Type-check the dependencies
         run: deno check src/index.ts

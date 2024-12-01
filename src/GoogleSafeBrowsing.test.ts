@@ -1,15 +1,17 @@
 import { describe, expect, it } from 'vitest'
-import { findThreadMatches } from './lookup.ts'
+import { GoogleSafeBrowsing } from './GoogleSafeBrowsing.js'
 
-const apiKey = process.env.GOOGLE_SAFE_BROWSING_API_KEY as string
+const client = new GoogleSafeBrowsing(
+  process.env.GOOGLE_SAFE_BROWSING_API_KEY as string,
+)
 
-describe('lookup', () => {
-  it('should work detect malicious link', () => {
+describe('GoogleSafeBrowsing', () => {
+  it('should detect malicious link', async () => {
     expect(
-      findThreadMatches(apiKey, {
+      client.findThreatMatches({
         client: {
-          clientId: 'khanh.sh',
-          clientVersion: '1.0.0',
+          clientId: 'khanh.id',
+          clientVersion: '2.0.0',
         },
         threatInfo: {
           threatTypes: ['MALWARE', 'SOCIAL_ENGINEERING'],
