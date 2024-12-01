@@ -67,6 +67,30 @@ jobs:
         run: pnpm test -- --environment=edge-runtime
         env:
           GOOGLE_SAFE_BROWSING_API_KEY: ${{ secrets.GOOGLE_SAFE_BROWSING_API_KEY }}
+  coverage:
+    name: Coverage
+    needs: [node, edge]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@ac5bf11548bf5e19b8aadb8182072616590fa4a6
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run unit tests
+        run: pnpm test -- --coverage.enabled
+        env:
+          GOOGLE_SAFE_BROWSING_API_KEY: ${{ secrets.GOOGLE_SAFE_BROWSING_API_KEY }}
+      - name: Update coverage report
+        uses: codacy/codacy-coverage-reporter-action@89d6c85cfafaec52c72b6c5e8b2878d33104c699
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage
   deno:
     name: Deno
     needs: lints
