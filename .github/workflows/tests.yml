@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup pnpm
-        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2
+        uses: pnpm/action-setup@ac5bf11548bf5e19b8aadb8182072616590fa4a6
       - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup pnpm
-        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2
+        uses: pnpm/action-setup@ac5bf11548bf5e19b8aadb8182072616590fa4a6
       - name: Set up Node.js ${{matrix.node}}
         uses: actions/setup-node@v4
         with:
@@ -55,7 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup pnpm
-        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2
+        uses: pnpm/action-setup@ac5bf11548bf5e19b8aadb8182072616590fa4a6
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
