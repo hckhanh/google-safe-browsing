@@ -27,6 +27,7 @@
   "devDependencies": {
     "@edge-runtime/vm": "4.0.4",
     "@types/node": "22.10.1",
+    "@vitest/coverage-v8": "2.1.6",
     "@vitest/eslint-plugin": "1.1.12",
     "eslint": "9.16.0",
     "eslint-plugin-perfectionist": "4.1.2",
