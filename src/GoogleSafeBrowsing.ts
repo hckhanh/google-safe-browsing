@@ -95,7 +95,7 @@ export class GoogleSafeBrowsing {
       throw new Error(`API request failed with status ${res.status}`)
     }
 
-    return res.json()
+    return res.json() as Promise<FindThreatMatchesResponse>
   }
 }
 
