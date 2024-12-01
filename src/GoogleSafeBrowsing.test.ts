@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { GoogleSafeBrowsing } from './GoogleSafeBrowsing.js'
 
 const client = new GoogleSafeBrowsing(
@@ -7,7 +8,7 @@ const client = new GoogleSafeBrowsing(
 
 describe('GoogleSafeBrowsing', () => {
   it('should detect malicious link', async () => {
-    expect(
+    await expect(
       client.findThreatMatches({
         client: {
           clientId: 'khanh.id',
