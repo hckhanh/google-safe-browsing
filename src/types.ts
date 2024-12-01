@@ -10,11 +10,11 @@
  * @see https://developers.google.com/safe-browsing/reference/rest/v4/ThreatType
  */
 export type ThreatType =
-  | 'THREAT_TYPE_UNSPECIFIED'
   | 'MALWARE'
-  | 'SOCIAL_ENGINEERING'
-  | 'UNWANTED_SOFTWARE'
   | 'POTENTIALLY_HARMFUL_APPLICATION'
+  | 'SOCIAL_ENGINEERING'
+  | 'THREAT_TYPE_UNSPECIFIED'
+  | 'UNWANTED_SOFTWARE'
 
 /**
  * Types of platforms.
@@ -32,15 +32,15 @@ export type ThreatType =
  * @see https://developers.google.com/safe-browsing/reference/rest/v4/PlatformType
  */
 export type PlatformType =
+  | 'ALL_PLATFORMS'
+  | 'ANDROID'
+  | 'ANY_PLATFORM'
+  | 'CHROME'
+  | 'IOS'
+  | 'LINUX'
+  | 'OSX'
   | 'PLATFORM_TYPE_UNSPECIFIED'
   | 'WINDOWS'
-  | 'LINUX'
-  | 'ANDROID'
-  | 'OSX'
-  | 'IOS'
-  | 'ANY_PLATFORM'
-  | 'ALL_PLATFORMS'
-  | 'CHROME'
 
 /**
  * Types of entries that pose threats.
@@ -53,9 +53,9 @@ export type PlatformType =
  * @see https://developers.google.com/safe-browsing/reference/rest/v4/ThreatEntryType
  */
 export type ThreatEntryType =
+  | 'EXECUTABLE'
   | 'THREAT_ENTRY_TYPE_UNSPECIFIED'
   | 'URL'
-  | 'EXECUTABLE'
 
 /**
  * An individual threat; for example, a malicious URL or its hash representation. Only one of these fields should be set.
@@ -65,16 +65,16 @@ export type ThreatEntryType =
 export type ThreatEntry =
   | {
       /**
-       * A URL.
-       */
-      url: string
-    }
-  | {
-      /**
        * A hash prefix, consisting of the most significant 4-32 bytes of a SHA256 hash. This field is in binary format.
        * For JSON requests, hashes are base64-encoded string.
        */
       hash: string
+    }
+  | {
+      /**
+       * A URL.
+       */
+      url: string
     }
   | {
       /**
