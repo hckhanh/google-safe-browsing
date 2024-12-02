@@ -17,7 +17,10 @@ export default defineConfig({
       reporter: process.env.CI ? ['clover'] : coverageConfigDefaults.reporter,
     },
     reporters: process.env.CI
-      ? ['dot', 'github-actions']
+      ? process.env.TEST_ANALYTICS
+        ? ['junit', 'dot', 'github-actions']
+        : ['dot', 'github-actions']
       : configDefaults.reporters,
+    outputFile: 'coverage/junit.xml',
   },
 })
