@@ -73,6 +73,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup pnpm
         uses: pnpm/action-setup@ac5bf11548bf5e19b8aadb8182072616590fa4a6
       - name: Set up Node.js
