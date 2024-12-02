@@ -94,7 +94,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Upload test results to Codecov
         if: ${{ github.actor != 'renovate[bot]' && !cancelled() }}
-        uses: codecov/test-results-action@9739113ad922ea0a9abb4b2c0f8bf6a4aa8ef820
+        uses: codecov/test-results-action@6515afe67c25cf11657e6eb2dd44cc0b032c8883
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: 'coverage/junit.xml'
