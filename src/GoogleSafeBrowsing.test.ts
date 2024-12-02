@@ -4,24 +4,22 @@ import { GoogleSafeBrowsing } from './GoogleSafeBrowsing.js'
 
 const client = new GoogleSafeBrowsing(
   process.env.GOOGLE_SAFE_BROWSING_API_KEY as string,
+  {
+    clientId: 'khanh.id',
+    clientVersion: '2.0.0',
+  },
 )
 
 describe('GoogleSafeBrowsing', () => {
   it('should detect malicious link', async () => {
     await expect(
       client.findThreatMatches({
-        client: {
-          clientId: 'khanh.id',
-          clientVersion: '2.0.0',
-        },
-        threatInfo: {
-          threatTypes: ['MALWARE', 'SOCIAL_ENGINEERING'],
-          platformTypes: ['ALL_PLATFORMS'],
-          threatEntryTypes: ['URL'],
-          threatEntries: [
-            { url: 'http://malware.testing.google.test/testing/malware/' },
-          ],
-        },
+        threatTypes: ['MALWARE', 'SOCIAL_ENGINEERING'],
+        platformTypes: ['ALL_PLATFORMS'],
+        threatEntryTypes: ['URL'],
+        threatEntries: [
+          { url: 'http://malware.testing.google.test/testing/malware/' },
+        ],
       }),
     ).resolves.toEqual({
       matches: [
