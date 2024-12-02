@@ -1,7 +1,7 @@
-# google-safe-browsing
+# google-safe-browsing [![JSR](https://jsr.io/badges/@hckhanh/google-safe-browsing)](https://jsr.io/@hckhanh/google-safe-browsing)
 
-[![JSR](https://jsr.io/badges/@hckhanh/google-safe-browsing)](https://jsr.io/@hckhanh/google-safe-browsing)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/be4f5f8019a743f3878358399c110a36)](https://app.codacy.com/gh/hckhanh/google-safe-browsing/dashboard)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hckhanh_google-safe-browsing&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=hckhanh_google-safe-browsing)
+[![codecov](https://codecov.io/gh/hckhanh/google-safe-browsing/graph/badge.svg?token=OTWNSODDXK)](https://codecov.io/gh/hckhanh/google-safe-browsing)
 
 A JavaScript client for [Google Safe Browsing](https://safebrowsing.google.com) [API](https://developers.google.com/safe-browsing)
 
