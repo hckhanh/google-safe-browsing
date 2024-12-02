@@ -9,7 +9,7 @@
     "test": "vitest related src/*.ts",
     "test:prettier": "prettier --check .",
     "test:types": "deno check src/index.ts",
-    "test:eslint": "eslint src/ -f json -o lints/eslint-report.json"
+    "test:eslint": "eslint src/ -f json -o eslint-report.json"
   },
   "author": {
     "name": "Khánh Hoàng",
