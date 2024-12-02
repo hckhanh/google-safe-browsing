@@ -10,5 +10,6 @@ node_modules/
 # environment variables
 .env*
 
-# testing
+# reports
 coverage
+lints

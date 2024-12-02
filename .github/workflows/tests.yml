@@ -67,12 +67,14 @@ jobs:
         run: pnpm test -- --environment=edge-runtime
         env:
           GOOGLE_SAFE_BROWSING_API_KEY: ${{ secrets.GOOGLE_SAFE_BROWSING_API_KEY }}
-  coverage:
-    name: Coverage
+  analytics:
+    name: Analytics
     needs: [node, edge]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup pnpm
         uses: pnpm/action-setup@ac5bf11548bf5e19b8aadb8182072616590fa4a6
       - name: Set up Node.js
@@ -86,18 +88,13 @@ jobs:
         run: pnpm test -- --coverage.enabled
         env:
           GOOGLE_SAFE_BROWSING_API_KEY: ${{ secrets.GOOGLE_SAFE_BROWSING_API_KEY }}
-          TEST_ANALYTICS: 1
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@015f24e6818733317a2da2edd6290ab26238649a
-        if: ${{ github.actor != 'renovate[bot]' }}
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-      - name: Upload test results to Codecov
-        if: ${{ github.actor != 'renovate[bot]' && !cancelled() }}
-        uses: codecov/test-results-action@6515afe67c25cf11657e6eb2dd44cc0b032c8883
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: 'coverage/junit.xml'
+      - name: Run ESLint
+        run: pnpm test:eslint
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@383f7e52eae3ab0510c3cb0e7d9d150bbaeab838
+        env:
+          SONAR_TOKEN: ${{ secrets. SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   deno:
     name: Deno
     needs: lints
