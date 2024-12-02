@@ -91,7 +91,7 @@ jobs:
       - name: Generate ESLint report
         run: |
           pnpm test:eslint
-          sed -i 's|${{ github.workspace }}/||g' lints/eslint-report.json
+          sed -i 's|${{ github.workspace }}/|/github/workspace/|g' lints/eslint-report.json
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@383f7e52eae3ab0510c3cb0e7d9d150bbaeab838
         with:
