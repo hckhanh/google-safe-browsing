@@ -67,8 +67,8 @@ jobs:
         run: pnpm test -- --environment=edge-runtime
         env:
           GOOGLE_SAFE_BROWSING_API_KEY: ${{ secrets.GOOGLE_SAFE_BROWSING_API_KEY }}
-  coverage:
-    name: Coverage
+  analytics:
+    name: Analytics
     needs: [node, edge]
     runs-on: ubuntu-latest
     steps:
