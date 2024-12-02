@@ -86,7 +86,8 @@ jobs:
         run: pnpm test -- --coverage.enabled
         env:
           GOOGLE_SAFE_BROWSING_API_KEY: ${{ secrets.GOOGLE_SAFE_BROWSING_API_KEY }}
-          TEST_ANALYTICS: 1
+      - name: Run ESLint
+        run: pnpm test:eslint
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@383f7e52eae3ab0510c3cb0e7d9d150bbaeab838
         env:
