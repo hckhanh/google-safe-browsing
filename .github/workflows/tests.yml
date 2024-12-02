@@ -91,7 +91,7 @@ jobs:
       - name: Run ESLint
         run: pnpm test:eslint
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@383f7e52eae3ab0510c3cb0e7d9d150bbaeab838
+        uses: SonarSource/sonarcloud-github-action@9f9bba2c7aaf7a55eac26abbac906c3021d211b2
         env:
           SONAR_TOKEN: ${{ secrets. SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
