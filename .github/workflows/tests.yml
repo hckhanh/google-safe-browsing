@@ -92,6 +92,14 @@ jobs:
         run: pnpm test:eslint
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@383f7e52eae3ab0510c3cb0e7d9d150bbaeab838
+        with:
+          args: >
+            -Dsonar.projectKey=hckhanh_google-safe-browsing
+            -Dsonar.organization=hckhanh
+            -Dsonar.sources=.
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.eslint.reportPaths=lints/eslint-report.json
+            -Dsonar.test.inclusions=src/**/*.test.ts
         env:
           SONAR_TOKEN: ${{ secrets. SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
