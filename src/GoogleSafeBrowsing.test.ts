@@ -35,4 +35,24 @@ describe('GoogleSafeBrowsing', () => {
       ],
     })
   })
+
+  it('should detect malicious link from urls', async () => {
+    await expect(
+      client.findThreatMatchesFromUrls([
+        'http://malware.testing.google.test/testing/malware/',
+      ]),
+    ).resolves.toEqual({
+      matches: [
+        {
+          threatType: 'MALWARE',
+          platformType: 'ANY_PLATFORM',
+          threat: {
+            url: 'http://malware.testing.google.test/testing/malware/',
+          },
+          cacheDuration: '300s',
+          threatEntryType: 'URL',
+        },
+      ],
+    })
+  })
 })

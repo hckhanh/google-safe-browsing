@@ -73,7 +73,7 @@ export class GoogleSafeBrowsing {
    *   ],
    * })
    *
-   * const hasRisk = result.matches !== undefined && result.matches.length > 0
+   * const hasRisk = result.matches?.length > 0
    * ```
    *
    * @param threatInfo The lists and entries to be checked for matches.
@@ -100,10 +100,49 @@ export class GoogleSafeBrowsing {
         throw new Error('Rate limit exceeded for Google Safe Browsing API')
       }
 
-      throw new Error(`API request failed with status ${res.status}`)
+      const errorBody = await res.text()
+      throw new Error(
+        `API request failed with status ${res.status}: ${errorBody}`,
+      )
     }
 
     return res.json()
+  }
+
+  /**
+   * Finds threat matches from urls using Google Safe Browsing API.
+   *
+   * @example
+   * ```ts
+   * const client = new GoogleSafeBrowsing('apiKey', {
+   *  clientId: 'uniqueClientId',
+   *  clientVersion: '1.0.0',
+   * })
+   * const result = await client.findThreatMatchesFromUrls([
+   *   'http://malware.testing.google.test/testing/malware/'
+   * ])
+   *
+   * const hasRisk = result.matches?.length > 0
+   * ```
+   *
+   * @param urls The list of urls to be checked for matches.
+   *
+   * @return A promise that resolves to the response object containing the list of {@link ThreatMatch}.
+   */
+  async findThreatMatchesFromUrls(
+    urls: string[],
+  ): Promise<FindThreatMatchesResponse> {
+    return this.findThreatMatches({
+      threatTypes: [
+        'MALWARE',
+        'UNWANTED_SOFTWARE',
+        'SOCIAL_ENGINEERING',
+        'POTENTIALLY_HARMFUL_APPLICATION',
+      ],
+      platformTypes: ['ANY_PLATFORM'],
+      threatEntryTypes: ['URL'],
+      threatEntries: urls.map((url) => ({ url })),
+    })
   }
 }
 
