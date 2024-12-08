@@ -14,31 +14,50 @@ A JavaScript client for [Google Safe Browsing](https://safebrowsing.google.com) 
 
 ## APIs
 
-### threatMatches.find
+### Find threat entries
 
 Finds the threat entries that match the Safe Browsing lists.
 
 ```ts
 import { GoogleSafeBrowsing } from '@hckhanh/google-safe-browsing'
 
-const client = new GoogleSafeBrowsing('apiKey')
-
-const result = await client.findThreatMatches({
-  client: {
-    clientId: 'uniqueClientId',
-    clientVersion: '1.0.0',
-  },
-  threatInfo: {
-    threatTypes: ['MALWARE', 'SOCIAL_ENGINEERING'],
-    platformTypes: ['ALL_PLATFORMS'],
-    threatEntryTypes: ['URL'],
-    threatEntries: [
-      { url: 'http://malware.testing.google.test/testing/malware/' },
-    ],
-  },
+// Initialize Google Safe Browsing client with API key and required identifiers
+// clientId: Unique identifier for your application instance
+// clientVersion: Current version of your application
+const client = new GoogleSafeBrowsing('apiKey', {
+  clientId: 'uniqueClientId',
+  clientVersion: '1.0.0',
 })
 
-const hasRisk = result.matches !== undefined && result.matches.length > 0
+const result = await client.findThreatMatches({
+  threatTypes: ['MALWARE', 'SOCIAL_ENGINEERING'],
+  platformTypes: ['ALL_PLATFORMS'],
+  threatEntryTypes: ['URL'],
+  threatEntries: [
+    { url: 'http://malware.testing.google.test/testing/malware/' },
+  ],
+})
+
+const hasRisk = result.matches?.length > 0
+```
+
+### Find threat entries from urls
+
+Finds the threat entries that match the Safe Browsing lists from the input urls
+
+```ts
+import { GoogleSafeBrowsing } from '@hckhanh/google-safe-browsing'
+
+const client = new GoogleSafeBrowsing('apiKey', {
+  clientId: 'uniqueClientId',
+  clientVersion: '1.0.0',
+})
+
+const result = await client.findThreatMatchesFromUrls([
+  'http://malware.testing.google.test/testing/malware/',
+])
+
+const hasRisk = result.matches?.length > 0
 ```
 
 ## Release Notes
