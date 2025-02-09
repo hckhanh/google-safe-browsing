@@ -104,6 +104,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Deno
-        uses: denoland/setup-deno@56da422736fc579176bc90d5f8913785926e7618
+        uses: denoland/setup-deno@27e0043effb637fb8409496e05bd8472e4b87554
       - name: Type-check the dependencies
         run: deno check src/index.ts
