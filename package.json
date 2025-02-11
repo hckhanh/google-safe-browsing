@@ -29,7 +29,7 @@
     "@edge-runtime/vm": "5.0.0",
     "@types/node": "22.13.1",
     "@vitest/coverage-v8": "2.1.9",
-    "@vitest/eslint-plugin": "1.1.26",
+    "@vitest/eslint-plugin": "1.1.27",
     "eslint": "9.20.0",
     "eslint-plugin-perfectionist": "4.8.0",
     "prettier": "3.4.2",
