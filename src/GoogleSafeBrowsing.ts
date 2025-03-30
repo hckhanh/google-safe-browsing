@@ -24,6 +24,11 @@ export class GoogleSafeBrowsing {
   private readonly apiKey: string
 
   /**
+   * The client metadata.
+   */
+  private readonly client: ClientInfo
+
+  /**
    * Represents the endpoint URL of a network request or API call.
    */
   private readonly endpoint: string
@@ -32,15 +37,21 @@ export class GoogleSafeBrowsing {
    * Constructs an instance of the Class with the specified API key and optional endpoint.
    *
    * @param apiKey The API key used for authentication; must be a non-empty string.
+   * @param client The client metadata.
    * @param [endpoint=DEFAULT_ENDPOINT] The optional endpoint URL.
    * @throws {Error} If the `apiKey` is an empty string or only contains whitespace.
    */
-  constructor(apiKey: string, endpoint: string = DEFAULT_ENDPOINT) {
+  constructor(
+    apiKey: string,
+    client: ClientInfo,
+    endpoint: string = DEFAULT_ENDPOINT,
+  ) {
     if (!apiKey.trim()) {
       throw new Error('API key is required')
     }
 
     this.apiKey = apiKey
+    this.client = client
     this.endpoint = endpoint
   }
 
@@ -49,31 +60,28 @@ export class GoogleSafeBrowsing {
    *
    * @example
    * ```ts
-   * const client = new GoogleSafeBrowsing('apiKey')
+   * const client = new GoogleSafeBrowsing('apiKey', {
+   *  clientId: 'uniqueClientId',
+   *  clientVersion: '1.0.0',
+   * })
    * const result = await client.findThreatMatches({
-   *   client: {
-   *     clientId: 'uniqueClientId',
-   *     clientVersion: '1.0.0',
-   *   },
-   *   threatInfo: {
-   *     threatTypes: ['MALWARE', 'SOCIAL_ENGINEERING'],
-   *     platformTypes: ['ALL_PLATFORMS'],
-   *     threatEntryTypes: ['URL'],
-   *     threatEntries: [
-   *       { url: 'http://malware.testing.google.test/testing/malware/' },
-   *     ],
-   *   },
+   *   threatTypes: ['MALWARE', 'SOCIAL_ENGINEERING'],
+   *   platformTypes: ['ALL_PLATFORMS'],
+   *   threatEntryTypes: ['URL'],
+   *   threatEntries: [
+   *     { url: 'http://malware.testing.google.test/testing/malware/' },
+   *   ],
    * })
    *
-   * const hasRisk = result.matches !== undefined && result.matches.length > 0
+   * const hasRisk = result.matches?.length > 0
    * ```
    *
-   * @param request The request object containing the parameters for finding threat matches.
+   * @param threatInfo The lists and entries to be checked for matches.
    *
    * @return A promise that resolves to the response object containing the list of {@link ThreatMatch}.
    */
   async findThreatMatches(
-    request: FindThreatMatchesRequest,
+    threatInfo: ThreatInfo,
   ): Promise<FindThreatMatchesResponse> {
     const res = await fetch(
       `${this.endpoint}/threatMatches:find?key=${this.apiKey}`,
@@ -83,7 +91,7 @@ export class GoogleSafeBrowsing {
           'Content-Type': 'application/json',
           'Accept-Encoding': 'gzip, br',
         },
-        body: JSON.stringify(request),
+        body: JSON.stringify({ client: this.client, threatInfo }),
       },
     )
 
@@ -92,27 +100,50 @@ export class GoogleSafeBrowsing {
         throw new Error('Rate limit exceeded for Google Safe Browsing API')
       }
 
-      throw new Error(`API request failed with status ${res.status}`)
+      const errorBody = await res.text()
+      throw new Error(
+        `API request failed with status ${res.status}: ${errorBody}`,
+      )
     }
 
-    return res.json() as Promise<FindThreatMatchesResponse>
+    return res.json()
   }
-}
 
-/**
- * Represents a request to find threat matches.
- * This type is used to encapsulate the necessary information
- * for searching and identifying threats in specified lists and entries.
- */
-export interface FindThreatMatchesRequest {
   /**
-   * The client metadata.
+   * Finds threat matches from urls using Google Safe Browsing API.
+   *
+   * @example
+   * ```ts
+   * const client = new GoogleSafeBrowsing('apiKey', {
+   *  clientId: 'uniqueClientId',
+   *  clientVersion: '1.0.0',
+   * })
+   * const result = await client.findThreatMatchesFromUrls([
+   *   'http://malware.testing.google.test/testing/malware/'
+   * ])
+   *
+   * const hasRisk = result.matches?.length > 0
+   * ```
+   *
+   * @param urls The list of urls to be checked for matches.
+   *
+   * @return A promise that resolves to the response object containing the list of {@link ThreatMatch}.
    */
-  client: ClientInfo
-  /**
-   * The lists and entries to be checked for matches.
-   */
-  threatInfo: ThreatInfo
+  async findThreatMatchesFromUrls(
+    urls: string[],
+  ): Promise<FindThreatMatchesResponse> {
+    return this.findThreatMatches({
+      threatTypes: [
+        'MALWARE',
+        'UNWANTED_SOFTWARE',
+        'SOCIAL_ENGINEERING',
+        'POTENTIALLY_HARMFUL_APPLICATION',
+      ],
+      platformTypes: ['ANY_PLATFORM'],
+      threatEntryTypes: ['URL'],
+      threatEntries: urls.map((url) => ({ url })),
+    })
+  }
 }
 
 /**
